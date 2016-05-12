@@ -1,5 +1,7 @@
 # Nuffle, The PHP Library
 
+[![Join the chat at https://gitter.im/nuffleapp/nuffle-php](https://badges.gitter.im/nuffleapp/nuffle-php.svg)](https://gitter.im/nuffleapp/nuffle-php?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 ## Installation
 
