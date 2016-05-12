@@ -1,7 +1,7 @@
 {
-  "name": "nuffleapp/nuffle-php",
-  "description": "Pray to Nuffle, The Great God of Dices, and receive the value of a d20 roll.",
-  "keywords": ["d20", "random", "nuffle"],
+  "name": "nuffleapp/nuffle",
+  "description": "Roll a die with any number of sides.",
+  "keywords": ["d20", "random", "nuffle", "dice"],
   "license": "MIT",
   "authors": [
     {
