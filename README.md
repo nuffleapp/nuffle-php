@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nuffleapp/nuffle-php.svg?branch=master)](https://travis-ci.org/nuffleapp/nuffle-php) [![codecov](https://codecov.io/gh/nuffleapp/nuffle-php/branch/master/graph/badge.svg)](https://codecov.io/gh/nuffleapp/nuffle-php)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Build Status](https://travis-ci.org/nuffleapp/nuffle-php.svg?branch=master)](https://travis-ci.org/nuffleapp/nuffle-php) [![codecov](https://codecov.io/gh/nuffleapp/nuffle-php/branch/master/graph/badge.svg)](https://codecov.io/gh/nuffleapp/nuffle-php)
 
 # Nuffle, The PHP Library
 
@@ -39,6 +39,13 @@ That method will return a number between 1 and 20 (inclusive).
 ## Contributing
 
 Please read through our [contributing guidelines](CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+
+
+## Versioning
+
+For transparency into our release cycle and in striving to maintain backward compatibility, Nuffle is maintained under [the Semantic Versioning guidelines](http://semver.org/). Sometimes we screw up, but we'll adhere to those rules whenever possible.
+
+See [the Releases section of our GitHub project](https://github.com/nuffleapp/nuffle-php/releases) for changelogs for each release version of Nuffle.
 
 
 ## Support
