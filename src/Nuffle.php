@@ -9,11 +9,11 @@ class Nuffle {
    */
   static function roll($x = 0) {
     // validate
-    if ( $x < 2 || !is_int($x) ) {
+    if ( $x < 2 || gettype($x) !== "integer" ) {
       throw new \Exception("Invalid number of sides.");
     }
 
     // roll
-    return rand(1, $x);
+    return mt_rand(1, $x);
   }
 }

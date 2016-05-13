@@ -12,10 +12,10 @@ class NuffleTest extends PHPUnit_Framework_TestCase {
    * and test the roll() method against each element in the set.
    */
   public function testValidRolls() {
-    $seeds = array(6,17,15,12,19,6,3,10,8,5,12,19,16,13,20,8,5,12,19,6);
+    $seeds = array(9,12,12,10,1,16,3,19,3,20,5,17,18,5,10,4,16,15,7,18);
 
     foreach ( $seeds as $seed => $result ) {
-      srand($seed);
+      mt_srand($seed);
 
       $roll = Nuffle::roll(20);
 
