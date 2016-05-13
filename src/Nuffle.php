@@ -7,9 +7,9 @@ class Nuffle {
    * 
    * @return Integer A number between 1 and $x (inclusive)
    */
-  static function roll($x = 0) {
+  static function roll($x) {
     // validate
-    if ( $x < 2 || gettype($x) !== "integer" ) {
+    if ( empty($x) || $x < 2 || !is_int($x) ) {
       throw new \Exception("Invalid number of sides.");
     }
 
