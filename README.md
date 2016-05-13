@@ -1,4 +1,5 @@
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Build Status](https://travis-ci.org/nuffleapp/nuffle-php.svg?branch=master)](https://travis-ci.org/nuffleapp/nuffle-php) [![codecov](https://codecov.io/gh/nuffleapp/nuffle-php/branch/master/graph/badge.svg)](https://codecov.io/gh/nuffleapp/nuffle-php)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Build Status](https://travis-ci.org/nuffleapp/nuffle-php.svg?branch=master)](https://travis-ci.org/nuffleapp/nuffle-php) [![codecov](https://codecov.io/gh/nuffleapp/nuffle-php/branch/master/graph/badge.svg)](https://codecov.io/gh/nuffleapp/nuffle-php) [![Gitter](https://badges.gitter.im/nuffleapp/nuffle-php.svg)](https://gitter.im/nuffleapp/nuffle-php?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge) [![Packagist](https://img.shields.io/packagist/v/nuffleapp/nuffle.svg?maxAge=2592000)](https://packagist.org/packages/nuffleapp/nuffle)
+
 
 # Nuffle, The PHP Library
 
