@@ -9,7 +9,7 @@ class Nuffle {
    */
   static function roll($x) {
     // validate
-    if ( empty($x) || $x < 2 || !is_int($x) ) {
+    if ( empty($x) || !is_int($x) || $x < 2 ) {
       throw new \Exception("Invalid number of sides.");
     }
 
