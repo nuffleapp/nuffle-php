@@ -84,11 +84,6 @@ class Calculator {
    * @return void
    */
   private function _validate($input) {
-    // need an input
-    if ( !isset($input) ) {
-      throw new \Exception("Input is required.");
-    }
-
     // has to be something we can calculate
     if ( !is_string($input) && !is_numeric($input) ) {
       throw new \Exception("Input must be an equation or a number.");
