@@ -69,21 +69,7 @@ class Calculator {
     $this->rolls = array();
 
     // throw rolls and replace 'xdy' dice notation with results
-    $this->equation = preg_replace_callback("/(?P<count>\d+)d(?P<sides>\d+)/", function($matches) {
-      $rolls = array();
-
-      for ( $i = 0; $i < $matches['count']; $i++ ) {
-        $rolls[] = mt_rand(1, $matches['sides']);
-      }
-
-      // save individual roll results
-      $this->rolls[] = array(
-          'notation' => $matches[0],
-          'rolls' => $rolls
-        );
-
-      return "(" . implode(" + ", $rolls) . ")";
-    }, $this->input);
+    $this->equation = preg_replace_callback("/(?P<count>\d+)d(?P<sides>\d+)/", "self::_expand_equation", $this->input);
 
     // calculate result
     $this->result = @eval("return $this->equation;");
@@ -150,5 +136,27 @@ class Calculator {
     }
 
     return $balance === 0;
+  }
+
+  /**
+   * Roll dice and expand the input into a matching equation
+   * 
+   * @param  string $matches Regex match
+   * @return string          Replaced match
+   */
+  private function _expand_equation($matches) {
+    $rolls = array();
+
+    for ( $i = 0; $i < $matches['count']; $i++ ) {
+      $rolls[] = mt_rand(1, $matches['sides']);
+    }
+
+    // save individual roll results
+    $this->rolls[] = array(
+        'notation' => $matches[0],
+        'rolls' => $rolls
+      );
+
+    return "(" . implode(" + ", $rolls) . ")";
   }
 }
