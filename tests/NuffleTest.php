@@ -12,31 +12,64 @@ class NuffleTest extends PHPUnit_Framework_TestCase {
    * and test the roll() method against each element in the set.
    */
   public function testValidRolls() {
-    $seeds = array(9,12,12,10,1,16,3,19,3,20,5,17,18,5,10,4,16,15,7,18);
+    $equations = array(20 => 20, '20' => 20, '20 + 10' => 30, '20 / 10' => 2, '20 - 10' => 10, '20 * 10' => 200, '1d20' => 12, '1d20 + 20' => 21, '1d20 + 2d6' => 27, '2d6' => 11, '(1d20 - 20) / 3d10' => 0, '((1d20 - 20) / 3d10) - 3d10' => -18.4375, '((1d20 - 20) / 3d10) - 3d10 * 15' => -195.55555555556, '1d20 * 1d6' => 72, '1d20 / 1d6' => 2.6666666666667, '1d20 - 1d6' => 8);
 
-    foreach ( $seeds as $seed => $result ) {
-      mt_srand($seed);
+    mt_srand(1);
 
-      $roll = Nuffle::roll(20);
+    foreach ( $equations as $equation => $result ) {
+      $roll = Nuffle::roll($equation);
 
-      $this->assertEquals($result, $roll);
-      $this->assertGreaterThanOrEqual(1, $roll);
-      $this->assertLessThanOrEqual(20, $roll);
+      $this->assertEquals($result, $roll->result);
     }
   }
 
   /**
    * Test invalid rolls
    */
-  public function testInvalidRolls() {
-    $sides = array(-1, 0, 1, "troll", 20.5, null, true, false, "20", array(), new stdClass());
+  public function testMissingInput() {
+    try {
+      Nuffle::roll();
+      $this->fail("Expected exception not thrown");
+    } catch(\Exception $e) {
+      $this->assertEquals("Input can't be blank.", $e->getMessage());
+    }
+  }
 
-    foreach ( $sides as $side ) {
+  public function testInvalidEquations() {
+    $inputs = array(")", "(", "0d0", "0d1", "1d0", "d1", "1d", "1d20 +", "+ 1d20", "1d20 -", "- 1d20", "1d20 /", "/ 1d20", "1d20 *", "* 1d20", "nuffle");
+
+    foreach ( $inputs as $input ) {
       try {
-        Nuffle::roll($side);
+        Nuffle::roll($input);
         $this->fail("Expected exception not thrown");
-      } catch(\Exception $e) { //Not catching a generic Exception or the fail function is also catched
-        $this->assertEquals("Invalid number of sides.", $e->getMessage());
+      } catch(\Exception $e) {
+        $this->assertEquals("Invalid equation.", $e->getMessage());
+      }
+    }
+  }
+
+  public function testUnbalancedEquations() {
+    $inputs = array("((1d20)", "(1d20))");
+
+    foreach ( $inputs as $input ) {
+      try {
+        Nuffle::roll($input);
+        $this->fail("Expected exception not thrown");
+      } catch(\Exception $e) {
+        $this->assertEquals("Unbalanced parens.", $e->getMessage());
+      }
+    }
+  }
+
+  public function testInvalidObjectTypes() {
+    $inputs = array(true, array(), new stdClass());
+
+    foreach ( $inputs as $input ) {
+      try {
+        Nuffle::roll($input);
+        $this->fail("Expected exception not thrown");
+      } catch(\Exception $e) {
+        $this->assertEquals("Input must be an equation or a number.", $e->getMessage());
       }
     }
   }
