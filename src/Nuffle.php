@@ -11,7 +11,7 @@ class Nuffle {
    * @param  string $equation User input
    * @return object           Nuffle\Calculator object
    */
-  static function roll($equation) {
+  static function roll($equation = "") {
     $calculator = new Calculator($equation);
     return $calculator->calculate();
   }
@@ -98,14 +98,19 @@ class Calculator {
    * @return void
    */
   private function _validate($input) {
-    // no empty input
-    if ( empty($input) ) {
-      throw new \Exception("Missing input.");
+    // need an input
+    if ( !isset($input) ) {
+      throw new \Exception("Input is required.");
     }
 
     // has to be something we can calculate
     if ( !is_string($input) && !is_numeric($input) ) {
       throw new \Exception("Input must be an equation or a number.");
+    }
+
+    // no empty inputs
+    if ( empty($input) ) {
+      throw new \Exception("Input can't be blank.");
     }
 
     // validate the input format
@@ -134,13 +139,13 @@ class Calculator {
       if ( $char == '(' ) {
         $balance++;
       } else if ( $char == ')' ) {
-        // found a close paren without a matching open paren,
-        // no need to continue further
-        if ( $balance === 0 ) {
-          break;
-        }
-
         $balance--;
+      }
+
+      // found a close paren without a matching open paren,
+      // no need to continue further
+      if ( $balance < 0 ) {
+        break;
       }
     }
 
