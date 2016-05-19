@@ -3,7 +3,7 @@
 
 # Nuffle, The PHP Library
 
-Nuffle, The PHP Library, is a simple library that provides the functionality to roll one die with any number of sides.
+Nuffle, The PHP Library, is a dice calculator library that provides the functionality to perform complex dice rolls and calculate their result (ex: `5d6 + 1d20 / (1d6 - 2)`.
 
 
 ## Installation
@@ -28,14 +28,47 @@ use \Nuffle\Nuffle;
 
 ## Usage
 
-Nuffle is a simple dice roller, allowing you to roll a die of any number of sides. To do so, simply call the `roll()` method with the number sided die you want to roll:
+Nuffle is a dice calculator, allowing you to perform complex dice rolls and calculate their result. To do so, simply call the `roll()` method with your equation:
 
 ```
-Nuffle::roll(20)
+Nuffle::roll('5d6 + 1d20 / (1d6 - 2)')
 ```
 
-That method will return a number between 1 and 20 (inclusive).
+That method will return an object that looks like the following:
 
+```
+{
+   "rolls" : [
+      {
+         "notation" : "5d6",
+         "rolls" : [
+            2,
+            1,
+            2,
+            4,
+            5
+         ]
+      },
+      {
+         "notation" : "1d20",
+         "rolls" : [
+            11
+         ]
+      },
+      {
+         "rolls" : [
+            4
+         ],
+         "notation" : "1d6"
+      }
+   ],
+   "equation" : "(2 + 1 + 2 + 4 + 5) + (11) / ((4) - 2)",
+   "result" : 19.5,
+   "input" : "5d6 + 1d20 / (1d6 - 2)"
+}
+```
+
+The object includes the value of each individual dice roll notation, the expanded equation, the equation result, and the original input.
 
 ## Contributing
 
