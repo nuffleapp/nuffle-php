@@ -90,7 +90,7 @@ class Calculator {
     }
 
     // no empty inputs
-    if ( empty($input) ) {
+    if ( trim($input) === '' ) {
       throw new \Exception("Input can't be blank.");
     }
 
