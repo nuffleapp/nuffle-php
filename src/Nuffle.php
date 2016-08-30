@@ -7,7 +7,7 @@ class Nuffle {
 
   /**
    * Parse and calculate user submitted dice-roll equations
-   * 
+   *
    * @param  string $equation User input
    * @return object           Nuffle\Calculator object
    */
@@ -23,35 +23,35 @@ class Nuffle {
 class Calculator {
   /**
    * User input
-   * 
+   *
    * @var string
    */
   public $input = "";
 
   /**
    * Parsed equation
-   * 
+   *
    * @var string
    */
   public $equation = "";
 
   /**
    * Roll results
-   * 
+   *
    * @var array
    */
   public $rolls = array();
 
   /**
    * Equation result
-   * 
+   *
    * @var integer
    */
   public $result = 0;
 
   /**
    * Constructor
-   * 
+   *
    * @param string $input User input
    */
   public function __construct($input) {
@@ -61,7 +61,7 @@ class Calculator {
 
   /**
    * Calculate the results based on the user input
-   * 
+   *
    * @return object
    */
   public function calculate() {
@@ -69,7 +69,7 @@ class Calculator {
     $this->rolls = array();
 
     // throw rolls and replace 'xdy' dice notation with results
-    $this->equation = preg_replace_callback("/(?P<count>\d+)d(?P<sides>\d+)/", "self::_expand_equation", $this->input);
+    $this->equation = preg_replace_callback("/(?P<count>\d+)d(?P<sides>\d+)/i", "self::_expand_equation", $this->input);
 
     // calculate result
     $this->result = @eval("return $this->equation;");
@@ -79,7 +79,7 @@ class Calculator {
 
   /**
    * Validate user input
-   * 
+   *
    * @param  string $input User input
    * @return void
    */
@@ -109,7 +109,7 @@ class Calculator {
 
   /**
    * Check if equation has balanced parens
-   * 
+   *
    * @param  string  $input User input
    * @return boolean        Whether or not the parens are balanced
    */
@@ -135,7 +135,7 @@ class Calculator {
 
   /**
    * Roll dice and expand the input into a matching equation
-   * 
+   *
    * @param  string $matches Regex match
    * @return string          Replaced match
    */
